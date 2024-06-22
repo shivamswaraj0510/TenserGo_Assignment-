@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  authService:
+    build: ./backend/authService
+    ports:
+      - "3000:3000"
+    environment:
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
+      - SESSION_SECRET=${SESSION_SECRET}
+    networks:
+      - my-network
+
+  invoiceService:
+    build: ./backend/invoiceService
+    ports:
+      - "3001:3001"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/invoices
+    networks:
+      - my-network
+    depends_on:
+      - mongo
+
+  reminderService:
+    build: ./backend/reminderService
+    ports:
+      - "3002:3002"
+    environment:
+      - ZAPIER_WEBHOOK_URL=${ZAPIER_WEBHOOK_URL}
+    networks:
+      - my-network
+
+  apiGateway:
+    build: ./backend/apiGateway
+    ports:
+      - "3003:3003"
+    networks:
+      - my-network
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3004:3000"
+    networks:
+      - my-network
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - my-network
+
+networks:
+  my-network:
+    driver: bridge
