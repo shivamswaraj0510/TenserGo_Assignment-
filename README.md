@@ -8,7 +8,7 @@ Steps to Set Up and Run the Application....
 Clone the Repository.... 
 mkdir my-saas-app
 cd my-saas-app
-Create Environment Variables File
+# Create Environment Variables File
 In the root directory of the project, create a .env file with the following content:
 
 GOOGLE_CLIENT_ID=your-google-client-id
@@ -17,7 +17,7 @@ SESSION_SECRET=your-session-secret
 ZAPIER_WEBHOOK_URL=your-zapier-webhook-url
 MONGO_URI=mongodb://mongo:27017/invoices
 
-Replace the placeholder values with your actual values:
+# Replace the placeholder values with your actual values:
 
 your-google-client-id: Your Google OAuth client ID.
 your-google-client-secret: Your Google OAuth client secret.
@@ -25,9 +25,9 @@ your-session-secret: A secret key for session management.
 your-zapier-webhook-url: The Zapier webhook URL for reminders.
 Docker Compose Configuration
 
-Ensure the docker-compose.yml file is set up as follows:
+# Ensure the docker-compose.yml file is set up as follows:
 
-Run the following command to build and start all services using Docker Compose:
+# Run the following command to build and start all services using Docker Compose:
 docker-compose up --build
 Accessing the Application
 
@@ -38,7 +38,7 @@ Reminder Service: Available at http://localhost:3002.
 API Gateway: Available at http://localhost:3003.
 MongoDB: Running at mongodb://localhost:27017 (exposed on port 27017).
 
-End-to-End Flow
+# End-to-End Flow
 Login with Google OAuth:
 
 Access the frontend at http://localhost:3004.
